@@ -32,15 +32,5 @@ namespace Dzaba.Mvvm.Windows
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement), new FrameworkPropertyMetadata(
                 XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
-
-        internal static void CheckForFrameworkElementType(Type type)
-        {
-            Require.NotNull(type, nameof(type));
-
-            if (!type.IsSubclassOf(typeof(FrameworkElement)))
-            {
-                throw new ArgumentException($"The provided type {type.FullName} does not inherit from System.Windows.FrameworkElement.");
-            }
-        }
     }
 }

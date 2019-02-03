@@ -1,4 +1,5 @@
-﻿using Dzaba.Utils;
+﻿using Dzaba.Mvvm.Windows.Navigation;
+using Dzaba.Utils;
 using Ninject;
 using System;
 using System.Windows;
@@ -19,6 +20,31 @@ namespace Dzaba.Mvvm.Windows
                 ServiceLocator.SetContainer(container);
 
                 var mainWindow = container.Get<T>();
+                mainWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                current?.Shutdown();
+            }
+        }
+
+        public static void OnStartup<TWindow, TView>(Application current, Func<IKernel> iocFactory)
+            where TWindow : Window
+            where TView : FrameworkElement
+        {
+            try
+            {
+                Require.NotNull(current, nameof(current));
+                Require.NotNull(iocFactory, nameof(iocFactory));
+
+                var container = iocFactory();
+                ServiceLocator.SetContainer(container);
+
+                var navigation = container.Get<INavigationService>();
+                navigation.SetStartView<TView>();
+
+                var mainWindow = container.Get<TWindow>();
                 mainWindow.Show();
             }
             catch (Exception ex)

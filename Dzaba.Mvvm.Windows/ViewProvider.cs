@@ -1,7 +1,6 @@
 ﻿using Dzaba.Utils;
 using Ninject;
 using System;
-using System.ComponentModel;
 using System.Windows;
 
 namespace Dzaba.Mvvm.Windows
@@ -24,8 +23,6 @@ namespace Dzaba.Mvvm.Windows
 
         public FrameworkElement GetView(Type viewType)
         {
-            WpfUtils.CheckForFrameworkElementType(viewType);
-
             return (FrameworkElement)ioc.Get(viewType);
         }
 

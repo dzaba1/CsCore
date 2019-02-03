@@ -63,15 +63,12 @@ namespace Dzaba.Mvvm.Windows.Navigation
             }
         }
 
-        public void SetStartView(Type type)
+        public void SetStartView<T>()
+            where T : FrameworkElement
         {
-            Require.NotNull(type, nameof(type));
-
-            WpfUtils.CheckForFrameworkElementType(type);
-
             lock (syncLock)
             {
-                startViewType = type;
+                startViewType = typeof(T);
             }
         }
 
