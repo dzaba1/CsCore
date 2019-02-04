@@ -1,11 +1,12 @@
-﻿using Dzaba.Utils;
+﻿using Dzaba.Mvvm.Windows.Navigation;
+using Dzaba.Utils;
 using Ninject;
 
 namespace Dzaba.Mvvm.Windows
 {
     public static class MvvmBootstrapper
     {
-        public static void RegisterMvvm(this IKernel ioc)
+        public static void RegisterMvvmWindows(this IKernel ioc)
         {
             Require.NotNull(ioc, nameof(ioc));
 
@@ -18,6 +19,9 @@ namespace Dzaba.Mvvm.Windows
             ioc.Bind<IViewProvider>()
                 .To<ViewProvider>()
                 .InTransientScope();
+            ioc.Bind<INavigationService>()
+                .To<NavigationService>()
+                .InSingletonScope();
         }
     }
 }

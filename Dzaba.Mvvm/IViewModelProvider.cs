@@ -25,11 +25,6 @@ namespace Dzaba.Mvvm
         {
             Require.NotNull(viewModelType, nameof(viewModelType));
 
-            if (!viewModelType.ImplementsInterface<INotifyPropertyChanged>())
-            {
-                throw new ArgumentException($"The provided type {viewModelType.FullName} does not implement System.ComponentModel.INotifyPropertyChanged.");
-            }
-
             return (INotifyPropertyChanged)ioc.Get(viewModelType);
         }
 

@@ -43,6 +43,7 @@ namespace Dzaba.Mvvm.Windows
 
                 var navigation = container.Get<INavigationService>();
                 navigation.SetStartView<TView>();
+                navigation.ShowStartView();
 
                 var mainWindow = container.Get<TWindow>();
                 mainWindow.Show();
