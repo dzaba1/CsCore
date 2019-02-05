@@ -3,18 +3,18 @@ using System;
 
 namespace Dzaba.Mvvm
 {
-    public class RelayCommand<T> : RelayCommandBase
+    public class DelegateCommand<T> : DelegateCommandBase
     {
         private Action<T> execute;
         private Predicate<T> canExecute;
 
-        public RelayCommand(Action<T> execute)
+        public DelegateCommand(Action<T> execute)
             : this(execute, null)
         {
 
         }
 
-        public RelayCommand(Action<T> execute, Predicate<T> canExecute)
+        public DelegateCommand(Action<T> execute, Predicate<T> canExecute)
         {
             Require.NotNull(execute, nameof(execute));
 
@@ -25,7 +25,7 @@ namespace Dzaba.Mvvm
         public override bool CanExecute(object parameter)
         {
             T realParam = (T)parameter;
-            return canExecute == null ? true : canExecute(realParam);
+            return canExecute?.Invoke(realParam) ?? true;
         }
 
         public override void Execute(object parameter)
@@ -35,18 +35,18 @@ namespace Dzaba.Mvvm
         }
     }
 
-    public class RelayCommand : RelayCommandBase
+    public class DelegateCommand : DelegateCommandBase
     {
         private Action execute;
         private Func<bool> canExecute;
 
-        public RelayCommand(Action execute)
+        public DelegateCommand(Action execute)
             : this(execute, null)
         {
 
         }
 
-        public RelayCommand(Action execute, Func<bool> canExecute)
+        public DelegateCommand(Action execute, Func<bool> canExecute)
         {
             Require.NotNull(execute, nameof(execute));
 
@@ -56,7 +56,7 @@ namespace Dzaba.Mvvm
 
         public override bool CanExecute(object parameter)
         {
-            return canExecute == null ? true : canExecute();
+            return canExecute?.Invoke() ?? true;
         }
 
         public override void Execute(object parameter)

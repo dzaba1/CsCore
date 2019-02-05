@@ -40,16 +40,13 @@ namespace Dzaba.Mvvm.Windows.Navigation
             {
                 if (ActiveView != view)
                 {
-                    if (view is INavigatable)
+                    var navigatable = view as INavigatable;
+                    if (navigatable == null && view.DataContext != null)
                     {
-                        ((INavigatable)view).OnNavigate(argument);
+                        navigatable = view.DataContext as INavigatable;
                     }
 
-                    if (view.DataContext != null && view.DataContext is INavigatable)
-                    {
-                        ((INavigatable)view.DataContext).OnNavigate(argument);
-                    }
-
+                    navigatable?.OnNavigate(argument);
                     ShowView(view);
                 }
             }
@@ -92,13 +89,13 @@ namespace Dzaba.Mvvm.Windows.Navigation
             }
         }
 
-        private RelayCommand _startViewCommand;
-        public RelayCommand StartViewCommand
+        private DelegateCommand _startViewCommand;
+        public DelegateCommand StartViewCommand
         {
             get
             {
                 if (_startViewCommand == null)
-                    _startViewCommand = new RelayCommand(OnStartView);
+                    _startViewCommand = new DelegateCommand(OnStartView);
                 return _startViewCommand;
             }
         }

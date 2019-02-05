@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Windows.Input;
 
 namespace Dzaba.Mvvm
 {
-    public abstract class RelayCommandBase
+    public abstract class DelegateCommandBase : ICommand
     {
         public abstract bool CanExecute(object parameter);
 
