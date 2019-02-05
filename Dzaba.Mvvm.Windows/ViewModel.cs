@@ -31,5 +31,34 @@ namespace Dzaba.Mvvm.Windows
                 fe.DataContext = vm;
             }
         }
+
+        public static object GetParameter(DependencyObject obj)
+        {
+            return obj.GetValue(ParameterProperty);
+        }
+
+        public static void SetParameter(DependencyObject obj, object value)
+        {
+            obj.SetValue(ParameterProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for Parameter.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ParameterProperty =
+            DependencyProperty.RegisterAttached("Parameter", typeof(object), typeof(ViewModel), new FrameworkPropertyMetadata(null, OnParameterChanged));
+
+        private static void OnParameterChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            FrameworkElement fe = sender as FrameworkElement;
+
+            if (fe != null && !fe.IsInDesignMode() && e.NewValue != null)
+            {
+                var parametrized = fe as IParameterized;
+                if (parametrized == null && fe.DataContext != null)
+                {
+                    parametrized = fe.DataContext as IParameterized;
+                }
+                parametrized?.SetParameter(e.NewValue);
+            }
+        }
     }
 }
