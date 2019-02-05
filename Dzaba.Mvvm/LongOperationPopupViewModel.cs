@@ -24,12 +24,12 @@
             }
         }
 
-        public void CloseLongOperationPopup()
+        public void Close()
         {
             IsLongOperationExecuting = false;
         }
 
-        public void OpenLongOperationPopup(string message)
+        public void Open(string message)
         {
             LongOperationMessage = message;
             IsLongOperationExecuting = true;

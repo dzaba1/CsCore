@@ -5,7 +5,7 @@
         bool IsLongOperationExecuting { get; }
         string LongOperationMessage { get; }
 
-        void OpenLongOperationPopup(string message);
-        void CloseLongOperationPopup();
+        void Open(string message);
+        void Close();
     }
 }
