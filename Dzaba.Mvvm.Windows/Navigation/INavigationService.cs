@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace Dzaba.Mvvm.Windows.Navigation
 {
@@ -11,5 +12,7 @@ namespace Dzaba.Mvvm.Windows.Navigation
         void SetStartView<T>()
             where T : FrameworkElement;
         void ShowStartView();
+        void ShowView(Type viewType);
+        void ShowView(Type viewType, object argument);
     }
 }

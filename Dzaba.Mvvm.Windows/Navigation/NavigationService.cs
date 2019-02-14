@@ -38,17 +38,22 @@ namespace Dzaba.Mvvm.Windows.Navigation
 
             lock (syncLock)
             {
-                if (ActiveView != view)
-                {
-                    var navigatable = view as INavigatable;
-                    if (navigatable == null && view.DataContext != null)
-                    {
-                        navigatable = view.DataContext as INavigatable;
-                    }
+                SetView(argument, view);
+            }
+        }
 
-                    navigatable?.OnNavigate(argument);
-                    ShowView(view);
+        private void SetView(object argument, FrameworkElement view)
+        {
+            if (ActiveView != view)
+            {
+                var navigatable = view as INavigatable;
+                if (navigatable == null && view.DataContext != null)
+                {
+                    navigatable = view.DataContext as INavigatable;
                 }
+
+                navigatable?.OnNavigate(argument);
+                ShowView(view);
             }
         }
 
@@ -109,6 +114,30 @@ namespace Dzaba.Mvvm.Windows.Navigation
             catch (Exception ex)
             {
                 interactionService.ShowError(ex);
+            }
+        }
+
+        public void ShowView(Type viewType)
+        {
+            Require.NotNull(viewType, nameof(viewType));
+
+            var view = viewProvider.GetView(viewType);
+
+            lock (syncLock)
+            {
+                ShowView(view);
+            }
+        }
+
+        public void ShowView(Type viewType, object argument)
+        {
+            Require.NotNull(viewType, nameof(viewType));
+
+            var view = viewProvider.GetView(viewType);
+
+            lock (syncLock)
+            {
+                SetView(argument, view);
             }
         }
     }
