@@ -22,7 +22,7 @@ namespace Dzaba.Utils
             Require.NotNull(components, nameof(components));
             Require.NotNull(loggerFactory, nameof(loggerFactory));
 
-            components = components.ToArray();
+            this.components = components.ToArray();
             logger = loggerFactory.Create(GetType());
         }
 
