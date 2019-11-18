@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dzaba.Utils", "Dzaba.Utils\Dzaba.Utils.csproj", "{48B3ACEE-DC3E-46FB-8240-A6CFAFBF06A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dzaba.Utils.Tests", "Dzaba.Utils.Tests\Dzaba.Utils.Tests.csproj", "{581BC1F5-E883-4897-B870-2552C0BC60E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dzaba.Mvvm", "Dzaba.Mvvm\Dzaba.Mvvm.csproj", "{4CBAA993-F0B3-41C9-8E51-659CE1D161EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dzaba.Mvvm", "Dzaba.Mvvm\Dzaba.Mvvm.csproj", "{4CBAA993-F0B3-41C9-8E51-659CE1D161EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dzaba.Mvvm.Windows", "Dzaba.Mvvm.Windows\Dzaba.Mvvm.Windows.csproj", "{B8959074-0774-4781-83FF-8BFF051D297B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dzaba.TestUtils", "Dzaba.TestUtils\Dzaba.TestUtils.csproj", "{DE36AC92-DD95-4983-815A-34E26CF920CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B8959074-0774-4781-83FF-8BFF051D297B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8959074-0774-4781-83FF-8BFF051D297B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8959074-0774-4781-83FF-8BFF051D297B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE36AC92-DD95-4983-815A-34E26CF920CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE36AC92-DD95-4983-815A-34E26CF920CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE36AC92-DD95-4983-815A-34E26CF920CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE36AC92-DD95-4983-815A-34E26CF920CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
